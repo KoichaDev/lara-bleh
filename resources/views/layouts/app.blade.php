@@ -31,7 +31,9 @@
                 <a href="" class="p-3">Login</a>
             </li>
             <li>
-                <a href="" class="p-3">Register</a>
+                {{-- using route() is much easier to map your route than hardcoding the url link.
+                    Check the URL here for more info: https://youtu.be/MFh0Fd7BsjE?t=1585 --}}
+                <a href="{{ route('register') }}" class="p-3">Register</a>
             </li>
             <li>
                 <a href="" class="p-3">Logout</a>
