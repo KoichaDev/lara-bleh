@@ -13,6 +13,11 @@ class RegisterController extends Controller {
     }
 
     public function store(Request $request) {
+        // TODO: Validate request
+        // TODO: Store user
+        // TODO: Sign user in
+        // TODO: redirect
+
         // validate() function comes from the Controller class
         $this->validate($request, [ // If fail, it will throw exception which will redirect the user back
             'name'      =>  'required|max:255',
@@ -30,12 +35,10 @@ class RegisterController extends Controller {
             // by accessing functionalities. It doesn't make your code less testable. It just makes writing the code writing this code really easy
             // than doing new Hash(), then $hash -> make($request -> password)
             'password'  =>  Hash::make($request->password),
-
-
         ]);
-        // TODO: Validate request
-        // TODO: Store user
-        // TODO: Sign user in
-        // TODO: redirect
+
+        // Sign the user in here this route
+        // * best practice to chain the -> route() because when we change our route /dashboard, it will still work on our webp.php for example
+        return redirect()->route('dashboard');
     }
 }
