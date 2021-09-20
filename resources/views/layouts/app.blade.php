@@ -24,20 +24,29 @@
             </li>
         </ul>
         <ul class="flex items-center">
-            <li>
-                <a href="" class="p-3">Alex Garrett-Smith</a>
-            </li>
-            <li>
-                <a href="" class="p-3">Login</a>
-            </li>
-            <li>
-                {{-- using route() is much easier to map your route than hardcoding the url link.
+            {{-- // We can use this auth() -> user() to check if the user is authenthicated --}}
+            {{-- @if (auth()->user()) --}}
+
+            {{-- or we can use this alternative below --}}
+
+            @if (auth()->check())
+                <li>
+                    <a href="" class="p-3">Alex Garrett-Smith</a>
+                </li>
+                <li>
+                    <a href="" class="p-3">Logout</a>
+                </li>
+            @else
+                <li>
+                    <a href="" class="p-3">Login</a>
+                </li>
+                <li>
+                    {{-- using route() is much easier to map your route than hardcoding the url link.
                     Check the URL here for more info: https://youtu.be/MFh0Fd7BsjE?t=1585 --}}
-                <a href="{{ route('register') }}" class="p-3">Register</a>
-            </li>
-            <li>
-                <a href="" class="p-3">Logout</a>
-            </li>
+                    <a href="{{ route('register') }}" class="p-3">Register</a>
+                </li>
+            @endif
+
         </ul>
     </nav>
     @yield('content')
