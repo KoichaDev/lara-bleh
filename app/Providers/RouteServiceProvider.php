@@ -17,7 +17,11 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    // * This is our custom setup
+    public const HOME = '/';
+
+    // ! This is the default Laravel setup
+    // ! public const HOME = '/home';
 
     /**
      * The controller namespace for the application.

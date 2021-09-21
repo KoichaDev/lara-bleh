@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller {
 
+    public function __construct()
+    {
+        // Prevent to go to go e.g. example.com/login if you are already logged in as a user
+        $this -> middleware(['guest']);
+    }
+
     // responsible for showing the form
     public function index(Request $request) {
 
