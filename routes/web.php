@@ -3,9 +3,22 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 
+Route::get('/', function() {
+    return view('home');
+})->name('home');
+
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+// ! This is vurnerable for cross site forgery when using get-method. If JavaScript is used to hit this logout page, we will be signed out
+// ! of our application. Ideally, we want to protect it with cross site request forgery
+// Route::get('/logout', [LoginController::class, 'store'])->name('logout');
+
+// ! This is safer way! Remember the post method needs to be added on the form HTML of the method="post
+Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
+
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store'])->name('login');

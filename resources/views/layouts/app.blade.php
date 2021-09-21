@@ -36,7 +36,12 @@
                     <a href="" class="p-3">Alex Garrett-Smith</a>
                 </li>
                 <li>
-                    <a href="" class="p-3">Logout</a>
+                    <form action="{{ route('logout') }}" method="post"
+                          class="inline p-3">
+                        {{-- Since this is a form wth a method of post, we have to include the cross site request forgery protection --}}
+                        @csrf
+                        <button type="submit">Logout</button>
+                    </form>
                 </li>
             @endauth
 
