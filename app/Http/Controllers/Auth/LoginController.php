@@ -21,12 +21,14 @@ class LoginController extends Controller {
 
     // Responsible for signing the user in to the dashboard
     public function store(Request $request) {
+
         $this->validate($request, [ // If fail, it will throw exception which will redirect the user back
             'email'     =>  'required|email',
             'password'  =>  'required', // the confirmed will look after anything that the name=password_confirmed from the input element.
         ]);
         // This will attempt the authenthication
-        if (!auth()->attempt($request->only('email', 'password'))) {
+        // the 2nd param: is a remember_token Laravel will use to remember the user has been logged. The remember_token will be added on the database automatically
+        if (!auth()->attempt($request->only('email', 'password'), $request -> remember)) {
             // back() is a shortcut function as redirect()
             return back() -> with('status', 'Invalid login details');
         }
