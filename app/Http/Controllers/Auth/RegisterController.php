@@ -16,7 +16,6 @@ class RegisterController extends Controller {
 
         // This will give us array from the method of key-value pair we need for signing in
         // dd($request->only('email', 'password'));
-        // TODO: Sign user in
 
         // TODO: Validate request
         // validate() function comes from the Controller class
@@ -39,8 +38,8 @@ class RegisterController extends Controller {
             'password'  =>  Hash::make($request->password),
         ]);
 
+        // TODO: Sign user in
         // auth()->user(); // returns the user modal of the user is signing in
-
         auth()->attempt($request->only('email', 'password'));
 
         // TODO: redirect

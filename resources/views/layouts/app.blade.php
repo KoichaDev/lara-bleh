@@ -42,7 +42,7 @@
 
             @guest
                 <li>
-                    <a href="" class="p-3">Login</a>
+                    <a href="{{ route('login') }}" class="p-3">Login</a>
                 </li>
                 <li>
                     {{-- using route() is much easier to map your route than hardcoding the url link.
