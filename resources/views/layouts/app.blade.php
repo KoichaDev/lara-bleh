@@ -33,7 +33,9 @@
             {{-- Or EVEN BETTER SOLUTION --}}
             @auth
                 <li>
-                    <a href="" class="p-3">Alex Garrett-Smith</a>
+                    <a href="" class="p-3">{{ auth()->user()->name }}</a>
+
+                    {{-- <a href="" class="p-3">Alex Garrett-Smith</a> --}}
                 </li>
                 <li>
                     <form action="{{ route('logout') }}" method="post"
