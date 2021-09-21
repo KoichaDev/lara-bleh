@@ -10,7 +10,16 @@ Route::get('/', function() {
     return view('home');
 })->name('home');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+// * Alternative 1 to use middleware to not let user go to dashboard if it's not logged in to their user account
+
+// Route::get('/dashboard', [DashboardController::class, 'index'])
+//     -> name('dashboard')
+//     -> middleware('auth'); // * This will redirect to the login page if user are not logged in to their account
+
+// * Alternative 2 is to use without middleware like alternative 1, but instead we use it on our DashBoardController on our magic method constructor
+Route::get('/dashboard', [DashboardController::class, 'index']) -> name('dashboard');
+
 
 // ! This is vurnerable for cross site forgery when using get-method. If JavaScript is used to hit this logout page, we will be signed out
 // ! of our application. Ideally, we want to protect it with cross site request forgery

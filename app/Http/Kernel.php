@@ -13,6 +13,9 @@ class Kernel extends HttpKernel
      *
      * @var array
      */
+
+    // ! middleware will check this, modifying request before they get into the root/core of your application render out what you can see
+    // ! It basically acts like a way to prevent things going next step or modifying things on the way
     protected $middleware = [
         // \App\Http\Middleware\TrustHosts::class,
         \App\Http\Middleware\TrustProxies::class,
@@ -29,6 +32,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middlewareGroups = [
+        // ! Middleway web is where we for example needs to start sessions
         'web' => [
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
@@ -38,7 +42,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
-
+        // ! Laravel ships out with API built-in. Middleway api are stateless. They don't need the middleware
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
@@ -53,8 +57,9 @@ class Kernel extends HttpKernel
      *
      * @var array
      */
+    // ! This is middleware to give key. You can use these for example:
     protected $routeMiddleware = [
-        'auth' => \App\Http\Middleware\Authenticate::class,
+        'auth' => \App\Http\Middleware\Authenticate::class, // ! Check if user is authenticated, or redirect them otherwise, or not signing in by accessing whatever you want to restrict on the page
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
