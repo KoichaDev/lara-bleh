@@ -13,7 +13,7 @@
                               placeholder="Post something..."></textarea>
                     @error('body')
                         <div class="text-red-500 mt-2 text-sm">
-                            {{ message }}
+                            {{ $message }}
                         </div>
                     @enderror
                 </div>
