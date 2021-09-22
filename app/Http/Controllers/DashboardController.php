@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller {
@@ -19,6 +20,9 @@ class DashboardController extends Controller {
 
         // * This is to get the object of the post that exist from the user based on the users posts from the database which is the current user that is logged in
         // dd(auth() -> user() -> posts);
+
+        // If you need to manipulate the date of created_at property. Google carbon documentation how to do it. Laravel is using that library
+        // dd(Post::find(4)-> created_at) ;
         return view('dashboard');
     }
 }
