@@ -8,8 +8,13 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public function index() {
-        // Get all post from the database in order and it's Laravel collection
-        $posts = Post::get();
+        // Get all post from the database in order and it's Laravel collection.
+        // ! Not so good if you have millions post in Database
+        // $posts = Post::get();
+
+        // Pagination for our post
+        // arg. takes how many posts inside the page
+        $posts = Post::paginate(2);
 
         return view('posts.index', [
             'posts' => $posts,

@@ -36,6 +36,9 @@
                         <p class="mb-2">{{ $post->body }}</p>
                     </div>
                 @endforeach
+
+                {{-- This will produce our pagination links --}}
+                {{ $posts->links() }}
             @else
                 <p>There are no posts</p>
             @endif
