@@ -38,7 +38,7 @@
                         <div class="flex items-center">
                             @if (!$post->likedByUser(auth()->user()))
 
-                                <form action="{{ route('posts.likes', $post->id) }}" method="post" class="mr-1">
+                                <form action="{{ route('posts.likes', $post) }}" method="post" class="mr-1">
                                     @csrf
                                     <button type="submit" class="text-blue-500">Like</button>
                                 </form>
@@ -48,8 +48,12 @@
                                 </form>
 
                             @else
-                                <form action="" method="post" class="mr-1">
+                                <form action="{{ route('posts.unlike', $post) }}" method="post"
+                                      class="mr-1">
                                     @csrf
+                                    {{-- This is laravel to 'spoof' the method we want to use within this form, since delete doesn't exist on the method="delete" --}}
+                                    {{-- This will send a 'fake' delete request over to an end-point --}}
+                                    @method('DELETE')
                                     <button type="submit" class="text-blue-500">Unlike</button>
                                 </form>
                             @endif
