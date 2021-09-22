@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
-{
+class PostController extends Controller {
+
+    public function __construct() {
+        $this -> middleware(['auth'])
+    }
+
     public function index() {
         // Get all post from the database in order and it's Laravel collection.
         // ! Not so good if you have millions post in Database
