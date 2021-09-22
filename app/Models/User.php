@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Like;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -46,5 +47,11 @@ class User extends Authenticatable
     public function posts() {
         // This will return a user has many post model
         return $this -> hasMany(Post::class);
+    }
+
+    // We ues this likes function to let user like our post through the user
+    public function likes() {
+        // this relationship has many users that can like a post
+        return $this -> hasMany(Like::class);
     }
 }
