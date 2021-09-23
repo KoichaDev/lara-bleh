@@ -48,4 +48,10 @@ class PostController extends Controller {
         // This is redirect back to the original post
         return back();
     }
+
+    public function destroy(Post $post) {
+        $post -> delete();
+
+        return back();
+    }
 }
