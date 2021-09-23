@@ -21,7 +21,8 @@ class PostController extends Controller {
         // * Post::with(['user', 'likes']) is used something called "eager loader". We can bundle those query together
         // * so we don't create seperated query for a user and likes, so a user that has a post and a likes for example that is bundled together for a single query
         // * If we don't have this solution, then we would  be overloaded to many queries and makes website slow
-        $posts = Post::with(['user', 'likes'])->paginate(20);
+        // * orderBy('created_at', 'desc') will get the latest post on the top
+        $posts = Post::orderBy('created_at', 'desc')->with(['user', 'likes'])->paginate(20);
 
         return view('posts.index', [
             'posts' => $posts,
