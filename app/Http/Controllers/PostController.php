@@ -51,6 +51,11 @@ class PostController extends Controller {
     }
 
     public function destroy(Post $post) {
+        // This is to ensure if it's not the user that belongs to their post, they can't delete it, even if they try to modify it on
+        // inspect element by changing the user id for example
+        if(!$post->ownedByUser(auth() -> user())) {
+            dd('No!!');
+        }
         $post -> delete();
 
         return back();
