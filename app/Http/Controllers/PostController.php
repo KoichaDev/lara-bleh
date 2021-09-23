@@ -18,7 +18,10 @@ class PostController extends Controller {
 
         // Pagination for our post
         // arg. takes how many posts inside the page
-        $posts = Post::paginate(2);
+        // * Post::with(['user', 'likes']) is used something called "eager loader". We can bundle those query together
+        // * so we don't create seperated query for a user and likes, so a user that has a post and a likes for example that is bundled together for a single query
+        // * If we don't have this solution, then we would  be overloaded to many queries and makes website slow
+        $posts = Post::with(['user', 'likes'])->paginate(20);
 
         return view('posts.index', [
             'posts' => $posts,
