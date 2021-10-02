@@ -23,7 +23,7 @@ Route::get('/', function() {
 // * Alternative 2 is to use without middleware like alternative 1, but instead we use it on our DashBoardController on our magic method constructor
 Route::get('/dashboard', [DashboardController::class, 'index']) -> name('dashboard');
 
-Route::get('/users/{user}/posts', [UserPostController::class, 'index']) -> name('users.posts');
+Route::get('/users/{user:username}/posts', [UserPostController::class, 'index']) -> name('users.posts');
 
 // ! This is vurnerable for cross site forgery when using get-method. If JavaScript is used to hit this logout page, we will be signed out
 // ! of our application. Ideally, we want to protect it with cross site request forgery
