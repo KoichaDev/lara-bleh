@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostLikeController;
+use App\Http\Controllers\UserPostController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
@@ -22,6 +23,8 @@ Route::get('/', function() {
 // * Alternative 2 is to use without middleware like alternative 1, but instead we use it on our DashBoardController on our magic method constructor
 Route::get('/dashboard', [DashboardController::class, 'index']) -> name('dashboard');
 
+Route::get('/users/{user}/posts', [UserPostController::class, 'index']) -> name('users.posts');
+
 // ! This is vurnerable for cross site forgery when using get-method. If JavaScript is used to hit this logout page, we will be signed out
 // ! of our application. Ideally, we want to protect it with cross site request forgery
 // Route::get('/logout', [LoginController::class, 'store'])->name('logout');
@@ -32,7 +35,6 @@ Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store'])->name('login');
-
 
 // We are using the -> name() to chain the router for our app.blade.php link url
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
