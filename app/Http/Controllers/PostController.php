@@ -50,6 +50,12 @@ class PostController extends Controller {
         return back();
     }
 
+    public function show(Post $post) {
+        return view('posts.show', [
+            'post' => $post
+        ]);
+    }
+
     public function destroy(Post $post) {
         // this parameter 'delete' is defined on the PostPolicy delete() method
         $this -> authorize('delete', $post); // this will throw an exception and render out status code 403

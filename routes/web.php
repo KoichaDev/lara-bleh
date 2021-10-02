@@ -42,7 +42,9 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/posts', [PostController::class, 'index']) -> name('posts');
+Route::get('/posts/{post}', [PostController::class, 'show']) -> name('posts.show');
 Route::post('/posts', [PostController::class, 'store']);
+
 Route::delete('/posts/{post}', [PostController::class, 'destroy']) -> name('posts.destroy');
 
 // routes for adding like/unlike for the post

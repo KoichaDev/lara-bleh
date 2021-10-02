@@ -23,6 +23,18 @@
                     <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded font-medium">Post</button>
                 </div>
             </form>
+
+            {{-- The posts will return the laravel collection --}}
+            @if ($posts->count())
+                @foreach ($posts as $post)
+                    <x-post :post="$post" />
+                @endforeach
+
+                {{-- This will produce our pagination links --}}
+                {{ $posts->links() }}
+            @else
+                <p>There are no posts</p>
+            @endif
         </div>
     </div>
 @endsection
